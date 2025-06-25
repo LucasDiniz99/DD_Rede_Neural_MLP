@@ -34,13 +34,13 @@ def prepararModelo():
     X_test = X_scaler.transform(X_test)  
 
     mlp = MLPRegressor(
-        hidden_layer_sizes=(80, 20, ),  # Arquitetura da rede: 2 camadas ocultas
+        hidden_layer_sizes=(40, 20),  # Arquitetura da rede: 2 camadas ocultas
         activation='relu',            # Função de ativação
         solver='adam',                # Otimizador
         alpha=0.001,                  # Termo de regularização
         batch_size=16,                # Tamanho do batch
         learning_rate='adaptive',     # Taxa de aprendizado adaptativa
-        max_iter=250,                # Número máximo de iterações
+        max_iter=500,                # Número máximo de iterações
         early_stopping=True,          # Parada antecipada
         validation_fraction=0.1,      # Fração para validação
         random_state=42,
@@ -91,10 +91,13 @@ def get_user_input():
     
     return np.array([user_data])
 
+
+# Iniciando programa
+clearConsole()
 # Selecionando melhor modelo
 print("=======================\nIniciando seleção de modelo:\n")
 melhorModelo, melhorMse, melhorR2, melhorX_scaler = prepararModelo()
-for i in range(0, 20):
+for i in range(0, 40):
     newModelo, newMse, newR2, melhorX_scaler = prepararModelo()
     print(f"Métricas {i}:: [MSE] = {newMse:.4f}; [R²] = {newR2:.4f}\n")
     if(newMse < melhorMse):
