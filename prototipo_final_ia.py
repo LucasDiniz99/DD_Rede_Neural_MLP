@@ -94,14 +94,13 @@ def get_user_input():
 # Selecionando melhor modelo
 print("=======================\nIniciando seleção de modelo:\n")
 melhorModelo, melhorMse, melhorR2, melhorX_scaler = prepararModelo()
-if False:
-    for i in range(0, 20):
-        newModelo, newMse, newR2, melhorX_scaler = prepararModelo()
-        print(f"Métricas {i}:: [MSE] = {newMse:.4f}; [R²] = {newR2:.4f}\n")
-        if(newMse < melhorMse):
-            melhorModelo = newModelo
-            melhorMse = newMse
-            melhorR2 = newR2
+for i in range(0, 20):
+    newModelo, newMse, newR2, melhorX_scaler = prepararModelo()
+    print(f"Métricas {i}:: [MSE] = {newMse:.4f}; [R²] = {newR2:.4f}\n")
+    if(newMse < melhorMse):
+        melhorModelo = newModelo
+        melhorMse = newMse
+        melhorR2 = newR2
 
 print("\n=======================\nMelhor modelo:")
 print(f"[MSE]: {melhorMse:.4f}\n[R²]: {melhorR2:.4f}\n")
@@ -118,7 +117,7 @@ while True:
     choice = input("Escolha uma opção (1/2): ")
     
     if choice == '1':
-        #try:
+        try:
             # Obter entrada do usuário
             user_input = get_user_input()
             
@@ -135,8 +134,8 @@ while True:
             else:
                 print('A magia descrita é desbalanceada, seus custos são muito superiores aos benefícios previstos')
             
-        #except Exception as e:
-        #    print(f"Ocorreu um erro: {e}")
+        except Exception as e:
+            print(f"Ocorreu um erro: {e}")
             
     elif choice == '2':
         sys.exit(0)        
